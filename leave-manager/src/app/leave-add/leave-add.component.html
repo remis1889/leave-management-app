@@ -1,0 +1,29 @@
+<h3>New Leave Application</h3>
+
+<form [formGroup]="addLeaveForm" (ngSubmit)="addLeave()">
+    <div class="form-group" >
+      <!-- <p>Your Leave Balance: {{leave_balance}}</p> -->
+      <p [ngClass]="{ 'has-error': isSubmitted && formControls.fromDate.errors }">
+        <label>From:</label>
+        <input type="date" class="form-control" formControlName="fromDate" (blur)=calcDifference()>
+      </p>
+      <p [ngClass]="{ 'has-error': isSubmitted && formControls.toDate.errors }">
+        <label>To:</label>
+        <input class="form-control" formControlName="toDate" type="date" (blur)=calcDifference()>
+      </p>
+      <p>
+        <label>Total Days:</label>
+        <input class="form-control" formControlName="totalDays" type="number" #totalDays>
+      </p>
+      <!-- <p>
+        <label>Reason:</label>
+        <textarea class="form-control" formControlName="reason"></textarea>
+      </p> -->
+      <p>
+        <input type="submit" value="Apply">
+      </p>
+    </div>
+    
+</form>
+  
+

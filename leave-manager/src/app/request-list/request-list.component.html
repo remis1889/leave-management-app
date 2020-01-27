@@ -1,0 +1,40 @@
+<h3>Pending Requests</h3>
+
+<table mat-table [dataSource]="request_list" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="employee_id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.employee_id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="from">
+        <th mat-header-cell *matHeaderCellDef> From </th>
+        <td mat-cell *matCellDef="let element"> {{element.from}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="to">
+        <th mat-header-cell *matHeaderCellDef> To </th>
+        <td mat-cell *matCellDef="let element"> {{element.to}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total_days">
+        <th mat-header-cell *matHeaderCellDef> Total Days </th>
+        <td mat-cell *matCellDef="let element"> {{this.apiService.totalDays(element.from, element.to)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef> Approve </th>
+        <td mat-cell *matCellDef="let element"> <button (click)="update_status(element.id,element.employee_id,1)">Approve</button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="decline">
+        <th mat-header-cell *matHeaderCellDef> Decline </th>
+        <td mat-cell *matCellDef="let element"> <button (click)="update_status(element.id,element.employee_id,2)">Decline</button > </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>

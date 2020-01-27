@@ -8,28 +8,17 @@ class LeaveApplicationsController < ApplicationController
         respond_with @leave_applications
     end
 
-    def new
-        @leave_application = @employee.leave_applications.build
-        respond_with @leave_application
-    end    
-
     def create
         @leave_application = @employee.leave_applications.build(leave_application_params)
-        flash[:notice] = "Leave application was successfully created." if @leave_application.save
-        respond_with @leave_application        
-    end
-
-    def edit
-        respond_with @leave_application
+        @leave_application.save            
     end
 
     def update
-        flash[:notice] = "Leave application was successfully updated." if @leave_application.update(leave_application_params)
-        respond_with @leave_application 
+        @leave_application.update(leave_application_params)
     end
 
     def destroy
-        flash[:notice] = "Leave application was successfully deleted." if @leave_application.destroy        
+        @leave_application.destroy        
     end
 
     private

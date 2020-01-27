@@ -11,7 +11,12 @@ class EmployeesController < ApplicationController
     end
 
     def new_requests
-        new_requests = @current_employee.subordinates.preload(:leave_applications).map{ |employee| employee.leave_applications }.flatten
+        new_requests = @current_employee
+                            .subordinates
+                            .preload(:leave_applications)
+                            .map{ |employee| employee.leave_applications }
+                            .flatten
+                            .select! {|a| a.status == 0}
         respond_with new_requests
     end
 
